@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next",
-    "build": "next build",
+    "dev": "next dev",
+    "build": "next build && next export",
     "start": "next start"
   },
   "repository": {
