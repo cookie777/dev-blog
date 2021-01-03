@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import matter from "gray-matter";
-import Link from "next/link";
+// import Link from "next/link";
 
 
 const Index = ({ data, title, description }) => {
@@ -21,9 +21,9 @@ const Index = ({ data, title, description }) => {
         <ul>
           {ListItems.map((blog, i) => (
             <li key={i}>
-              <Link href={`/post/[blog]`} as = {`/post/${blog.slug}`}>
-                <a>{blog.title}</a>
-              </Link>
+              <a href={`/post/${blog.slug}`}>
+                {blog.title}
+              </a>
                 <p>{blog.description}</p>
             </li>
           ))}
