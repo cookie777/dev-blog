@@ -2,8 +2,6 @@ import React from 'react'
 import matter from 'gray-matter'
 import ReactMarkdown from 'react-markdown'
 
-{/* <ReactMarkdown source={content} /> */}
-
 function PostTemplate({ content, data }) {
   // This holds the data between `---` from the .md file
     const frontmatter = data
@@ -27,8 +25,6 @@ PostTemplate.getInitialProps = async (context) => {
     
     // Pass data to our component props
     return { ...data }
-
-    return { slug }
 }
 
 export default PostTemplate
