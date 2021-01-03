@@ -21,7 +21,7 @@ const Index = ({ data, title, description }) => {
         <ul>
           {ListItems.map((blog, i) => (
             <li key={i}>
-              <Link href={`/post/[slug]`} as = {`/post/${blog.slug}`}>
+              <Link href={`/post/[blog]`} as = {`/post/${blog.slug}`}>
                 <a>{blog.title}</a>
               </Link>
                 <p>{blog.description}</p>
