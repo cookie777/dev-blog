@@ -9,7 +9,7 @@ const Blog = ({ content, data }) => {
     <>
       <h1>{frontmatter.title}</h1>
       <h3>{frontmatter.description}</h3>
-      <ReactMarkdown escapeHtml={true} source={content} />
+      <ReactMarkdown source={content} />
     </>
   );
 };
