@@ -7,6 +7,7 @@ import matter from "gray-matter";
 const Index = ({ data, title, description }) => {
   const ListItems = data.map((blog) => matter(blog).data);
 
+  console.log(data)
 
   return (
     <>
