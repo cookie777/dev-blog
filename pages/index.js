@@ -4,8 +4,8 @@ import matter from "gray-matter";
 import Link from "next/link";
 
 
-const Index = ({ data, title, description }) => {
-  const ListItems = data.map((blog) => matter(blog).data);
+const Index = ({ blogLists, title, description }) => {
+  // const ListItems = data.map((blog) => matter(blog).data);
   return (
     <>
       <Head>
@@ -17,12 +17,12 @@ const Index = ({ data, title, description }) => {
       <h1>My First Blog ✍ </h1>
       <div>
         <ul>
-          {ListItems.map((blog, i) => (
+          {blogLists.map((blogTitle, i) => (
             <li key={i}>
-              <Link href="/post/[blog]" as = {`/post/${blog.slug}`}>
-                <a>{blog.title}</a>
+              <Link href="/post/[blog]" as = {`/post/${blogTitle}`}>
+                <a>{blogTitle}</a>
               </Link>
-                <p>{blog.description}</p>
+                {/* <p>{blog.description}</p> */}
             </li>
           ))}
         </ul>
@@ -37,20 +37,23 @@ export default Index;
 export async function getStaticProps() {
   const siteData = await import(`../config.json`);
 
-  const fs = require("fs");
-  const files = fs.readdirSync(`${process.cwd()}/content`, "utf-8");
-  const blogs = files.filter((fn) => fn.endsWith(".md") && !fn.match("undefined.md") );
-  const data = blogs.map((blog) => {
-    const path = `${process.cwd()}/content/${blog}`;
-    const rawContent = fs.readFileSync(path, {
-      encoding: "utf-8",
-    });
-    return rawContent;
-  });
+  //get all .md files in the posts dir
+  var glob = require("glob")
+  const blogs = glob.sync('content/*.md')
+
+  //remove path and extension to leave filename only
+  const blogSlugs = blogs
+  .map(file =>
+    file
+      .split('/')[1]
+      .replace(/ /g, '-')
+      .slice(0, -3)
+      .trim()
+  ).filter(title=> title !== "undefined")
 
   return {
     props: {
-      data: data,
+      blogLists: blogSlugs,
       title: siteData.default.title,
       description: siteData.default.description,
     },

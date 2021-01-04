@@ -3,10 +3,9 @@ import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 
 const Blog = (props) => {
-
   return (
     <>
-      <h1>{props.siteTitle}</h1>
+      <h1>{props.frontmatter.title}</h1>
       <h3>{props.frontmatter.description}</h3>
       <ReactMarkdown source={props.markdownBody} />
     </>
