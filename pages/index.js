@@ -6,7 +6,6 @@ import Link from "next/link";
 
 const Index = ({ data, title, description }) => {
   const ListItems = data.map((blog) => matter(blog).data);
-
   return (
     <>
       <Head>
