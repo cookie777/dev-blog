@@ -15,6 +15,7 @@ const Blog = (props) => {
 export default Blog;
 
 export async function getStaticProps(context) {
+  console.log(context)
   const { blog } = context.params;
   // Import our .md file using the `slug` from the URL
   const content = await import(`../../content/${blog}.md`);

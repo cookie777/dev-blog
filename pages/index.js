@@ -17,7 +17,7 @@ const Index = ({ blogLists, title, description }) => {
       <h1>My First Blog ✍ </h1>
       <div>
         <ul>
-          {blogLists.map((blogTitle, i) => (
+          {blogLists.slice(0,2).map((blogTitle, i) => (
             <li key={i}>
               <Link href="/post/[blog]" as = {`/post/${blogTitle}`}>
                 <a>{blogTitle}</a>
@@ -49,7 +49,7 @@ export async function getStaticProps() {
       .replace(/ /g, '-')
       .slice(0, -3)
       .trim()
-  ).filter(title=> title !== "undefined")
+  )
 
   return {
     props: {
