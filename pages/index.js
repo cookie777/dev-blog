@@ -2,10 +2,13 @@ import React from "react";
 import Head from "next/head";
 import matter from "gray-matter";
 import Link from "next/link";
+import NavigationBar from "../components/NavigationBar";
+import BlogThumbs from "../components/BlogThumbs";
 
+const numOfTopNBlogs = 2
 
 const Index = ({ blogLists, title, description }) => {
-  // const ListItems = data.map((blog) => matter(blog).data);
+  
   return (
     <>
       <Head>
@@ -14,34 +17,26 @@ const Index = ({ blogLists, title, description }) => {
         <meta name="Description" content={description}></meta>
         <title>{title}</title>
       </Head>
-      <h1>My First Blog ✍ </h1>
-      <div>
-        <ul>
-          {blogLists.slice(0,2).map((blogTitle, i) => (
-            <li key={i}>
-              <Link href="/post/[blog]" as = {`/post/${blogTitle}`}>
-                <a>{blogTitle}</a>
-              </Link>
-                {/* <p>{blog.description}</p> */}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <NavigationBar/>
+      <h1>My Blogs ✍ </h1>
+      <BlogThumbs blogLists = {blogLists} />
     </>
   );
 };
 
 export default Index;
 
-
+// prepare props at server side before hand
 export async function getStaticProps() {
   const siteData = await import(`../config.json`);
 
   //get all .md files in the posts dir
   var glob = require("glob")
-  const blogs = glob.sync('content/*.md')
+  const blogs = glob.sync('content/*.md').filter((_,index)=> index <1)
 
-  //remove path and extension to leave filename only
+  // Fixing name
+  // Remove path and extension .md to leave filename only
+  // test.md ->  test
   const blogSlugs = blogs
   .map(file =>
     file
@@ -51,6 +46,7 @@ export async function getStaticProps() {
       .trim()
   )
 
+  // Return all blog props as static data at server-side
   return {
     props: {
       blogLists: blogSlugs,

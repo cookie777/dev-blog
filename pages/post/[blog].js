@@ -1,21 +1,23 @@
 import react from "react";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
+import NavigationBar from "../../components/NavigationBar";
 
 const Blog = (props) => {
   return (
     <>
+      <NavigationBar/>
       <h1>{props.frontmatter.title}</h1>
       <h3>{props.frontmatter.description}</h3>
       <ReactMarkdown source={props.markdownBody} />
+      
     </>
   );
 };
-
 export default Blog;
 
+// Create static props for each blog
 export async function getStaticProps(context) {
-  console.log(context)
   const { blog } = context.params;
   // Import our .md file using the `slug` from the URL
   const content = await import(`../../content/${blog}.md`);
@@ -47,7 +49,7 @@ export async function getStaticPaths() {
 
   // create paths with `slug` param
   const paths = blogSlugs.map(slug => `/post/${slug}`)
-
+  
   return {
     paths,
     fallback: false,
