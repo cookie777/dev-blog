@@ -2,14 +2,20 @@ import react from "react";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import NavigationBar from "../../components/NavigationBar";
+import ArticleHeader from "../../components/ArticleHeader";
 
-const Blog = (props) => {
+const Blog = ({frontmatter, markdownBody}) => {
+  
+  const {title, description} = frontmatter
   return (
     <>
+      <ArticleHeader title={title} description={description} />
       <NavigationBar/>
-      <h1>{props.frontmatter.title}</h1>
-      <h3>{props.frontmatter.description}</h3>
-      <ReactMarkdown source={props.markdownBody} />
+      <h1>{title}</h1>
+      <h3>{description}</h3>
+
+      {/* This is the mark donw content body */}
+      <ReactMarkdown source={markdownBody} />
       
     </>
   );

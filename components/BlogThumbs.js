@@ -2,9 +2,6 @@ import react from "react";
 import Link from "next/link";
 
 const BlogThumbs = ({ blogLists }) => {
-    console.log(blogLists)
-    // const   blogLists = props.children
-    // const resentNBlog = 3
     return (
         <div>
             {/* show list blog up to N */}
