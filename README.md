@@ -19,6 +19,8 @@ https://dev.to/tinacms/creating-a-markdown-blog-with-next-js-52hk
 https://dev.to/tinacms/creating-a-markdown-blog-with-next-js-52hk
 
 
+https://stackoverflow.com/questions/62556627/next-js-fetch-and-maintain-global-data-for-all-components
+
 <!-- 
 
 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

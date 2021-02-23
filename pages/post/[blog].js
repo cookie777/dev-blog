@@ -24,12 +24,12 @@ export default Blog;
 
 // Create static props for each blog
 export async function getStaticProps(context) {
+  //if the page name is [id].js , then params will look like { id: ... }. 
   const { blog } = context.params;
   // Import our .md file using the `slug` from the URL
   const content = await import(`../../content/${blog}.md`);
   const config = await import(`../../config.json`)
   const data = matter(content.default);
-
   return {
     props: {
       siteTitle: config.title,
@@ -39,6 +39,7 @@ export async function getStaticProps(context) {
   }
 };
 
+// This is just getting articles overview (title)
 export async function getStaticPaths() {
   //get all .md files in the posts dir
   var glob = require("glob")
@@ -55,7 +56,6 @@ export async function getStaticPaths() {
 
   // create paths with `slug` param
   const paths = blogSlugs.map(slug => `/post/${slug}`)
-  
   return {
     paths,
     fallback: false,
