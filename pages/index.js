@@ -12,6 +12,7 @@ import ArticleHeader from "../components/ArticleHeader";
 const numOfTopNBlogs = 2
 
 const Index = ({blogContents, title, description }) => {
+  console.log(blogContents)
   return (
     <>
       <ArticleHeader title={title} description={description}/>
@@ -46,7 +47,8 @@ export async function getStaticProps() {
   for (var i = 0; i < blogTitles.length; i++) {
     const content = await import(`../content/${blogTitles[i]}.md`);
     const data = matter(content.default);
-    blogContents.push(data)
+    data.data.slug = blogTitles[i]
+    blogContents.push({header: data.data, content: data.content})
   }
 
   // Return all blog props as static data at server-side

@@ -15,7 +15,14 @@ const Blog = ({frontmatter, markdownBody}) => {
       <h3>{description}</h3>
 
       {/* This is the mark donw content body */}
-      <ReactMarkdown source={markdownBody} />
+      <ReactMarkdown 
+        source={markdownBody} 
+        // ./images/name.jpg  -> /images/name.jpg
+        transformImageUri={ url => {
+          return url.slice(1)
+          }
+        }
+      />
       
     </>
   );
