@@ -14,8 +14,16 @@ const BlogLists = ({ blogContents }) => {
                         <Link href="/post/[blog]" as={`/post/${blog.header.slug}`}>
                             <a>{blog.header.title}</a>
                         </Link>
-                        {/* <ReactMarkdown source={blog.content.slice(0,40)} /> */}
-                        {/* {blog.content.slice(0,40)} */}
+                        <ReactMarkdown source={blog.content} />
+                        {/* {blog.content.slice(0,80)} */}
+                        {/* <ReactMarkdown 
+                            source={markdownBody} 
+                            // ./images/name.jpg  -> /images/name.jpg
+                            transformImageUri={ url => {
+                                return url.slice(1)
+                                }
+                            }
+                        /> */}
                     </li>
                 ))}
             </ul>

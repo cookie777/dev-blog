@@ -6,7 +6,7 @@ const NavigationBar = (props) =>{
     return(
         <div>
             <p>aaa</p>
-            <ui>
+            <ul>
                 <li>
                     <Link href="/">
                         <a>Top</a>
@@ -22,7 +22,7 @@ const NavigationBar = (props) =>{
                         <a>Archives</a>
                     </Link>
                 </li>
-            </ui>
+            </ul>
 
 
 
